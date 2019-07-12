@@ -1,0 +1,41 @@
+1.查看是否已经安装Python
+
+Centos7默认安装了python2.7.5 因为一些命令要用它比如yum 它使用的是python2.7.5。
+
+进入/usr/bin,备份一下前一版本的python：mv python python.bak
+
+2.安装新版本的Python
+
+
+Python-3.5.1.tar.xz (这个是pthon的源码)
+
+执行wget命令直接下载：wget http://tj.mycodes.net/soft/Python-3.6.3.tgz
+
+3.解压配置安装
+./configure --prefix=/usr/local/python/python3;make -j4;make install
+
+4.修改yum配置文件
+因为yum使用python2，因此替换为python3后可能无法正常工作，继续使用这个python2.7.5
+
+因此修改yum配置文件(vi /usr/bin/yum)。
+
+把文件头部的#!/usr/bin/python改成#!/usr/bin/python2.7保存退出即可。
+
+5.安装numpy
+
+wget http://jaist.dl.sourceforge.net/project/numpy/NumPy/1.9.0/numpy-1.9.0.zip
+
+解压安装：python setup.py install
+6.安装pip
+wget --no-check-certificate https://github.com/pypa/pip/archive/1.5.5.tar.gz
+注意：wget获取https的时候要加上：--no-check-certificate
+tar zvxf 1.5.5.tar.gz    #解压文件
+cd pip-1.5.5/
+python setup.py install
+7.安装Django
+下载https://www.djangoproject.com/download/1.8.18/tarball/
+解压安装
+python setup.py install
+
+
+
