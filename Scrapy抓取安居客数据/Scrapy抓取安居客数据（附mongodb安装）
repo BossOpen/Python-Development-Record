@@ -1,0 +1,48 @@
+一。安装mongodb
+使用wget命令下载安装包 
+
+wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.2.6.tgz
+二。配置
+
+tar -zxvf mongodb-linux-x86_64-3.2.6.tgz （命令不能解压直接手动解压）
+
+mkdir /usr/local/mongodb
+
+cp mongodb-linux-x86_64-rhel70-3.2.6/* /usr/local/mongodb
+
+cd /usr/local/mongodb
+
+mkdir db;mkdir logs
+
+cd bin
+
+编辑配置文件：
+
+vi mongodb.conf
+写入配置：
+dbpath=/usr/local/mongodb/db
+logpath=/usr/local/mongodb/logs/mongodb.log
+port=27017
+fork=true
+nohttpinterface=true
+重新绑定mongodb的配置文件地址和访问IP
+/usr/local/mongodb/bin/mongod --bind_ip localhost -f /usr/local/mongodb/bin/mongodb.conf
+三。安装python插件
+pip3 install pymongo
+
+四。开机自动启动mongodb
+
+vi /etc/rc.d/rc.local
+/usr/local/mongodb/bin/mongod --config /usr/local/mongodb/bin/mongodb.conf
+重启一下系统测试下能不能自启
+
+#进入mongodb的shell模式 
+/usr/local/mongodb/bin/mongo
+#查看数据库列表 
+show dbs
+#当前db版本 
+db.version();
+
+五。代码
+附。
+
